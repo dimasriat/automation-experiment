@@ -31,8 +31,10 @@ jobs:
         run: yarn test
       - name: "Use fly"
         uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: "Set machine to 1"
+        run: flyctl scale count 1
       - name: "Deploy to flyio"
-        run: fly scale count 1 && flyctl deploy --remote-only
+        run: flyctl deploy --remote-only
         env: 
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       
