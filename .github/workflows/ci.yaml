@@ -31,8 +31,6 @@ jobs:
         run: yarn test
       - name: "Use fly"
         uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: "Set machine to 1"
-        run: flyctl scale count 1
       - name: "Deploy to flyio"
         run: flyctl deploy --remote-only
         env: 
