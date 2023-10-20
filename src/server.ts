@@ -6,7 +6,7 @@ export function createServerApp() {
   const app = express();
 
   app.get("/", (req: Request, res: Response) => {
-    const TEXT = "foobarrr";
+    const TEXT = "dimski";
     console.log(printSomething(TEXT));
     console.log(printSomething(config.SECRET_MESSAGE));
 
