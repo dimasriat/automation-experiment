@@ -6,9 +6,9 @@ on:
       - main
   pull_request:
     paths:
-      - "**"
+      - "*"
     branches:
-      - "**"
+      - "*"
 
 jobs:
   build-and-test:
