@@ -1,0 +1,31 @@
+name: My CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - "**"
+    branches:
+      - "**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Use Node.js 16.x"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: "Install Yarn Globally"
+        run: |
+          npm install -g yarn
+          yarn
+      - name: "Build"
+        run: yarn build
+      - name: "Test"
+        env:
+          SECRET_MESSAGE: ${{ secrets.MY_SECRET_MESSAGE }}
+        run: yarn test
