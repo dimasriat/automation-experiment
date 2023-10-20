@@ -26,4 +26,6 @@ jobs:
       - name: "Build"
         run: yarn build
       - name: "Test"
+        env:
+          SECRET_MESSAGE: ${{ secrets.MY_SECRET_MESSAGE }}
         run: yarn test
