@@ -32,9 +32,7 @@ jobs:
       - name: "Use fly"
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: "Deploy to flyio"
-        run: |
-          flyctl secrets set SECRET_MESSAGE=${{ secrets.MY_SECRET_MESSAGE }}
-          flyctl deploy --remote-only
+        run: flyctl deploy --remote-only
         env: 
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       
