@@ -6,9 +6,9 @@ on:
       - main
   pull_request:
     paths:
-      - "*"
+      - "**"
     branches:
-      - "*"
+      - "**"
 
 jobs:
   build-and-test:
@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "Use Node.js 16.x"
+        uses: action/setup-node@v3
         with:
           node-version: 16.x
       - name: "Install Yarn Globally"
