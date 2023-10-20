@@ -1,10 +1,7 @@
-import config from "./config";
-import { printSomething } from "./helper";
+import { createServerApp } from "./server";
 
-function main() {
-  const TEXT = "foo";
-  console.log(printSomething(TEXT));
-  console.log(printSomething(config.SECRET_MESSAGE));
-}
-
-main();
+const server = createServerApp();
+const PORT = process.env.PORT || 8000;
+server.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});
