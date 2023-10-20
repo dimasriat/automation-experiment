@@ -1,5 +1,8 @@
-import moment from "moment";
-import { sayHi } from "./helper";
+import { printSomething } from "./helper";
 
-console.log(moment().format("YYYY-MM-DD HH:mm:ss"));
-console.log(sayHi("Dimas", "hello world!"));
+function main() {
+  const TEXT = "foo";
+  console.log(printSomething(TEXT));
+}
+
+main();
