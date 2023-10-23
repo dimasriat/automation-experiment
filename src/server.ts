@@ -2,11 +2,12 @@ import express, { Request, Response } from "express";
 import config from "./config";
 import { printSomething } from "./helper";
 
+const TEXT = "election";
+
 export function createServerApp() {
   const app = express();
 
   app.get("/", (req: Request, res: Response) => {
-    const TEXT = "foo";
     console.log(printSomething(TEXT));
     console.log(printSomething(config.SECRET_MESSAGE));
 
