@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import config from "./config";
 import { printSomething } from "./helper";
 
-const TEXT = "soup";
+const TEXT = "election";
 
 export function createServerApp() {
   const app = express();
