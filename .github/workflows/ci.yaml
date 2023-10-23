@@ -11,28 +11,41 @@ on:
       - "**"
 
 jobs:
+  merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Use Checkout Repo"
+        uses: actions/checkout@v3
+      - name: "Use fly"
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: "Deploy to flyio"
+        run: flyctl deploy --remote-only --wait-timeout 3600
+        env: 
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: "Use Checkout Repo"
+        uses: actions/checkout@v3
       - name: "Use Node.js 16.x"
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: "Install Yarn Globally"
-        run: |
-          npm install -g yarn
-          yarn
+      - name: "Install Package"
+        run: yarn
       - name: "Build"
         run: yarn build
       - name: "Test"
         env:
           SECRET_MESSAGE: ${{ secrets.MY_SECRET_MESSAGE }}
         run: yarn test
+      - name: "Use Checkout Repo"
+        uses: actions/checkout@v3
       - name: "Use fly"
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: "Deploy to flyio"
-        run: flyctl deploy --remote-only --wait-timeout 300
+        run: flyctl deploy --remote-only --wait-timeout 3600
         env: 
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       
